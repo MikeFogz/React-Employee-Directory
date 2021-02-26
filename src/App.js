@@ -15,11 +15,22 @@ export default function App() {
     .then(json => setData(json));
   }, []);
 
+  function search(rows) {
+    const columns = rows[0] && Object.keys(rows[0]);
+    return rows.filter((row) =>
+      columns.some(
+        (column) => row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+      )
+    );
+  }
+
     return (
       <div>
-        <div>Filter</div>
         <div>
-          <Datatable data={data}/>
+          <input type="text" value={q} onChange={(e) => setQ(e.target.value)}/>
+        </div>
+        <div>
+          <Datatable data={search(data)}/>
         </div>
       </div>
     );
