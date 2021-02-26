@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ReactTable from "react-table"; 
+import Datatable from "./components/Datatable/Datatable";
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
 
@@ -15,9 +16,11 @@ export default function App() {
   }, []);
 
     return (
-      <ReactTable  
-      data={this.state.users}  
-      columns={columns}  
-   />
+      <div>
+        <div>Filter</div>
+        <div>
+          <Datatable data={data}/>
+        </div>
+      </div>
     );
 }
